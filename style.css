@@ -1,0 +1,75 @@
+@font-face {
+    font-family: Pixel;
+    src: url("public/fonts/10Pixel-Regular.ttf");
+}
+
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+main {
+    position: relative;
+    display: inline-block;
+}
+.smaller {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+.player{
+    background: lightgreen;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+.playerHealth{
+    background: blue;
+    width: 100%;
+    height: 30px;
+}
+.timer{
+    background: maroon;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 70px;
+    font-weight: 300;
+    font-family: Pixel;
+}
+.enemy {
+    background: lightgreen;
+    width: 100%;
+    height: 30px;
+}
+.enemyHealth{
+    background: blue;
+    width: 100%;
+    height: 30px;    
+}
+
+@font-face {
+    font-family: Game;
+    src: url("public/fonts/ka1.ttf");
+}
+
+.displayText {
+    position: absolute;
+    color: yellowgreen;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-family: Game;
+    font-size: 60px;
+    font-weight: 300;
+}
