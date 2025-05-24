@@ -1,8 +1,8 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 
-canvas.width = 1024;
-canvas.height = 600;
+canvas.width = 1200;
+canvas.height = 625;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -80,7 +80,7 @@ const player = new Sprite({
 
 const enemy = new Sprite({
     position: {
-        x:824,
+        x:1000,
         y:0
     },
     velocity: {
@@ -124,22 +124,28 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     )
 }
 
-let timer = 11
+function determineWinner({ player, enemy, timerId }) {
+    clearTimeout(timerId)
+    document.querySelector('.displayText').style.display = 'flex'
+    if (player.health === enemy.health) {
+        document.querySelector('.displayText').innerHTML = 'Time Over';
+    } else if (player.health > enemy.health) {
+        document.querySelector('.displayText').innerHTML = 'Player   1   Win';
+    } else {
+        document.querySelector('.displayText').innerHTML = 'Player  2  Win';
+    }
+}
+
+let timer = 60
+let timerId
 function decreaseTimer() {
     if (timer > 0) {
-        setTimeout(decreaseTimer, 1000)
+        timerId = setTimeout(decreaseTimer, 1000)
         timer--
         document.querySelector('.timer').innerHTML = timer
     }
     if(timer === 0) {
-        document.querySelector('.displayText').style.display = 'flex'
-        if (player.health === enemy.health) {
-            document.querySelector('.displayText').innerHTML = 'Time Over';
-        } else if (player.health > enemy.health) {
-            document.querySelector('.displayText').innerHTML = 'Player   1   Win';
-        } else {
-            document.querySelector('.displayText').innerHTML = 'Player  2  Win';
-        }
+        determineWinner({ player, enemy, timerId})
     }
 }
 
@@ -157,16 +163,16 @@ function animate() {
 
     //player movement
     if (keys.a.pressed && player.lastKey === 'a') {
-        player.velocity.x = -3
+        player.velocity.x = -5
     } else if (keys.d.pressed && player.lastKey === 'd') {
-        player.velocity.x = 3
+        player.velocity.x = 5
     }
 
     //enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
-        enemy.velocity.x = -3
+        enemy.velocity.x = -5
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
-        enemy.velocity.x = 3
+        enemy.velocity.x = 5
     }
 
     //detect for collision
@@ -186,6 +192,10 @@ function animate() {
             enemy.isAttacking = false
             player.health -=20
             document.querySelector('.playerHealth').style.width = player.health + '%'
+    }
+    //end game based on health
+    if (enemy.health <= 0 || player.health <= 0) {
+        determineWinner({ player, enemy, timerId })
     }
 }
 

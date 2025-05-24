@@ -32,7 +32,7 @@ main {
 }
 .timer{
     background: maroon;
-    width: 100px;
+    width: 120px;
     height: 100px;
     flex-shrink: 0;
     display: flex;
