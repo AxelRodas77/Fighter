@@ -1,6 +1,6 @@
 @font-face {
     font-family: Pixel;
-    src: url("public/fonts/10Pixel-Regular.ttf");
+    src: url("/public/fonts/10Pixel-Regular.ttf");
 }
 
 *{
@@ -56,12 +56,12 @@ main {
 
 @font-face {
     font-family: Game;
-    src: url("public/fonts/ka1.ttf");
+    src: url("/public/fonts/ka1.ttf");
 }
 
 .displayText {
     position: absolute;
-    color: yellowgreen;
+    color: black;
     display: none;
     justify-content: center;
     align-items: center;
