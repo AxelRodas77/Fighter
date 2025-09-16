@@ -61,7 +61,7 @@ main {
 
 .displayText {
     position: absolute;
-    color: black;
+    color: orangered;
     display: none;
     justify-content: center;
     align-items: center;
